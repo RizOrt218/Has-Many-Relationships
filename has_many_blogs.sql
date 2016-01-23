@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS users
 
 --to create index for performance optimization
 CREATE INDEX first_name_index ON users (username);
+CREATE INDEX created_at_index ON users (created_at);
 
 --create table titled 'posts'
 DROP TABLE IF EXISTS posts;
@@ -41,13 +42,12 @@ CREATE TABLE IF NOT EXISTS posts
   created_at timestamp NOT NULL DEFAULT now(),
   updated_at timestamp NOT NULL DEFAULT now(),
   user_id integer REFERENCES users(id),
-  -- first_name_id varchar(90) REFERENCES users(first_name),
   PRIMARY KEY (id)
 );
 
 CREATE INDEX title_index ON posts ( title );
 CREATE INDEX user_id_index ON posts ( user_id );
--- CREATE INDEX created_at_index ON post ( created_at );
+CREATE INDEX created_at_index ON post ( created_at );
 -- CREATE INDEX updated_at_index ON post ( updated_at );
 
 --create table titled 'comments'
